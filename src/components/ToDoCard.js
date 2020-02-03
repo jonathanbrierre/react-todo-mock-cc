@@ -1,16 +1,20 @@
 import React from 'react'
 
 const ToDoCard = (props) => {
+
+  const onClickCompleted = () =>{
+    props.changeCompleteStatus(props.todo.title)
+  } 
+
+  const onClickDelete = () => {
+    props.deleteTodo(props.todo.title)
+  }
     return (
     <div className="ui card">
         <div className="content">
-          <div className="header">{/*ToDo TITLE*/}</div>
-          {/* The button will require some conditional rendering. 
-            If the button is under the Incomplete Container, button should be blue and text should say Complete
-            If the button is under Complete Container, button should be orange and text should say Incomplete 
-            */}
-          <button onClick={null} className="ui button blue">Change</button>
-          <button onClick={null} className="ui button red">Delete</button>
+          <div className="header">{props.todo.title}</div>
+          {props.todo.completed ? <button onClick={onClickCompleted} className="ui button orange">Incomplete</button> : <button onClick={onClickCompleted} className="ui button blue">Complete</button>}
+          <button onClick={onClickDelete} className="ui button red">Delete</button>
         </div>
         
     </div>
